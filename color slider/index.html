@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple JavaScript Slider</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .slider {
+      position: relative;
+      width: 400px; 
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+    height: 175px;
+    width: 117%;
+    padding: 200px;
+}
+
+    button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    button.prev {
+      left: 10px;
+    }
+
+    button.next {
+      right: 10px;
+    }
+
+    button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <div class="slides">
+      <div class="slide" style="background-color: yellow;"></div>
+      <div class="slide" style="background-color: red;"></div>
+      <div class="slide" style="background-color: blue;"></div>
+      <div class="slide" style="background-color: green;"></div>
+      <div class="slide" style="background-color: cyan;"></div>
+    </div>
+    <button class="prev">&#8592;</button>
+    <button class="next">&#8594;</button>
+  </div>
+
+  <script>
+    const slides = document.querySelector('.slides');
+    const slide = document.querySelectorAll('.slide');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    let currentIndex = 0;
+    const slideWidth = document.querySelector('.slider').clientWidth; 
+
+    function showSlide(index) {
+      const offset = -index * slideWidth;
+      slides.style.transform = `translateX(${offset}px)`;
+    }
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex === 0) ? slide.length - 1 : currentIndex - 1;
+      showSlide(currentIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex === slide.length - 1) ? 0 : currentIndex + 1;
+      showSlide(currentIndex);
+    });
+
+    // Adjust slider on window resize
+    window.addEventListener('resize', () => {
+      showSlide(currentIndex); 
+    });
+  </script>
+</body>
+</html>

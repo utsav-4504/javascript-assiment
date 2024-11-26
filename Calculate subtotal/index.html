@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+button{
+    background-color: orange;
+    padding: 10px;
+    border: none;
+}
+.img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: url(img.jpg);
+    background-size: cover;
+}
+.img-1{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: url(qqq.jpeg);
+    background-size: cover;
+}
+    </style>
+</head>
+<body>
+    <div class="main"  cellpadding="0p" cellspacing="0px">
+        <table border="2px" oninput="total()" >
+            <tr>
+                <td>Product Info</td>
+                <td>Quantity</td>
+                <td>Price <p>(perunit)</p></td>
+                <td>Price <p>subtotal</p> </td>
+                <td></td>
+
+            </tr>
+            <tr id="delit">
+                <td>
+                    <div class="img"></div>
+                    <div><p>Fortunata window hardware-Decorative
+                        Holdbacks-Mocha
+                    </p></div>
+
+                </td>
+                <td><input type="number" id="naber"></td>
+                <td id="total_1">29.99</td>
+                <td id="multiplication"></td>
+                <td><button onclick="dilit()">Remove</button></td>
+
+
+            </tr>
+            <tr id="delit-1">
+                <td>
+                    <div class="img-1"></div>
+                    <div><p>Fortunata window hardware-Decorative
+                        Holdbacks-Mocha
+                    </p></div>
+                </td>
+                <td><input type="number" id="number"></td>
+                <td id="total_2">12.99</td>
+                <td id="multiplication-1"></td>
+                <td><button onclick="dilitt()">Remove</button></td>
+
+
+
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="alltotal"></td>
+                <td></td>
+            </tr>
+
+        </table>
+    </div>
+    <script>
+        function total(){
+            let add1 = document.getElementById("naber").value
+            let add = document.getElementById("total_1").innerText
+            let muit = add1 * add
+        document.getElementById("multiplication").innerText = muit
+        
+            let add11 = document.getElementById("number").value
+            let add22 = document.getElementById("total_2").innerText
+            let muit1 = add11 * add22
+        document.getElementById("multiplication-1").innerText = muit1
+
+            let new_and = muit + muit1
+        document.getElementById("alltotal").innerText = new_and
+
+        }
+    function dilit(){
+        document.getElementById("delit").innerHTML = ""
+    }
+    function dilitt(){
+        document.getElementById("delit-1").innerHTML = ""
+
+    }
+        
+    
+    </script>
+</body>
+</htm

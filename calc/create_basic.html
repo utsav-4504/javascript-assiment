@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            /* font-size: 15px ; */
+        }
+        .main{
+            border: 2px solid;
+            width: 600px;
+            /* height: 300px; */
+            margin:auto;
+            padding-left:20px ;
+            margin-top: 10px;
+            padding: 20px;
+        }
+        h2{
+            margin: 50px 0;
+        }
+        .main-1 {
+            margin-left: 12px;
+        }
+
+        .main-2 {
+            display: flex;
+            align-items: center;
+            gap: 60PX;
+        }
+
+        button {
+            margin-left: 10px;
+            margin: 10px 0;
+            height: 40px;
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+
+        }
+
+
+        .place {
+            margin-left: 100px;
+            padding: 10px;
+            padding-left: 100px;
+        }
+
+        .place-1 {
+            margin-left: 106px;
+        }
+        .ans input{
+            border: none;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="content">
+        <h2 >Maths Operations</h2>
+        </div>
+        <div class="main-1">
+            Enter 1st number:<input type="number" placeholder="" class="place place-1" value="" id="one"><br><br>
+            Enter 2nd number:<input type="number" placeholder="" class="place" value="" id="two">
+
+        </div>
+        <div class="main-2">
+            <div class="buttan">
+                <button  onclick="Add()">+</button>
+                <button onclick="remove()">-</button>
+                <button  onclick="multiplication ()">*</button><br>
+                <button  onclick=" qaz()">/</button>
+                <button  onclick="qaza()">%</button>
+            </div>
+            <div class="ans">
+                Answer is : <input type="text" name="" id="result" value="">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function Add(){
+        var val1 = document.getElementById("one").value
+        var val2 = document.getElementById("two").value
+        var sum = +val1 + +val2
+        document.getElementById("result").value = sum
+    }
+    function remove(){
+        var  val1 = document.getElementById("one").value
+        var val2 = document.getElementById("two").value
+        var sum = +val1 - +val2
+        document.getElementById("result").value = sum
+    }
+    function  multiplication (){
+        var  val1 = document.getElementById("one").value
+        var val2 = document.getElementById("two").value
+        var sum = +val1 * +val2
+        // document.write(sum)
+        document.getElementById("result").value = sum
+    }
+    function  qaz(){
+        var  val1 = document.getElementById("one").value
+        var val2 = document.getElementById("two").value
+        var sum = +val1 / +val2
+        // document.write(sum)
+        document.getElementById("result").value = sum
+    }
+    function  qaza(){
+        var  val1 = document.getElementById("one").value
+        var val2 = document.getElementById("two").value
+        var sum = +val1 % +val2
+        // document.write(sum)
+        document.getElementById("result").value = sum
+    }
+</script>
+
+</html>

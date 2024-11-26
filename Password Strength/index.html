@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Indicator</title>
+
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        .main {
+            height: 250px;
+            width: 390px;
+            background-color: white;
+            margin: 150px auto;
+        }
+
+        h2,
+        #feedback {
+            text-align: center;
+        }
+
+        input {
+            height: 30px;
+            width: 250px;
+            border: none;
+            outline: none;
+        }
+
+        .input {
+            width: 320px;
+            border: 1px solid;
+            margin-left: 20px;
+        }
+
+        button {
+            margin-right: 10px;
+            border: none;
+            background-color: white;
+        }
+
+        .bars {
+            height: 5px;
+            width: 100px;
+            border: 1px solid;
+            border-radius: 10px;
+        }
+
+        #bars-container {
+            display: flex;
+            margin: 10px 0px 0px 20px;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <form action="#" oninput="checkPasswordStrength()">
+            <h2>Password Strength Indicator</h2>
+            <div class="input">
+                <input type="password" name="password" id="password" placeholder="Enter password">
+                <button type="button" id="toggle">SHOW</button>
+            </div>
+            <div id="bars-container">
+                <div id="bar-1" class="bars"></div>
+                <div id="bar-2" class="bars"></div>
+                <div id="bar-3" class="bars"></div>
+            </div>
+            <div id="feedback">Your password is weak</div>
+    </div>
+    </form>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle');
+        const passwordInput = document.getElementById('password');
+        
+        toggleBtn.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = 'HIDE';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = 'SHOW';
+            }
+        });
+
+        function checkPasswordStrength() {
+            let password = document.getElementById("password").value;
+            let bar1 = document.getElementById("bar-1");
+            let bar2 = document.getElementById("bar-2");
+            let bar3 = document.getElementById("bar-3");
+            let feedback = document.getElementById("feedback");
+
+            // Reset colors and feedback
+            bar1.style.backgroundColor = '';
+            bar2.style.backgroundColor = '';
+            bar3.style.backgroundColor = '';
+            feedback.textContent = 'Your password is weak';
+
+            if (password.length >= 4) {
+                // Weak password
+                bar1.style.backgroundColor = 'red';
+                feedback.textContent = 'Your password is weak';
+            }
+            if (password.length >= 6) {
+                // Medium password
+                bar2.style.backgroundColor = 'orange';
+                feedback.textContent = 'Your password is medium';
+            }
+            if (password.length >= 8) {
+                // Strong password
+                bar3.style.backgroundColor = 'green';
+                feedback.textContent = 'Your password is strong';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color:#BA55D3;
+
+        }
+    
+        .main{
+            height: auto;
+            width: 250px;
+            background-color: white;
+            border-radius: 7px;
+            margin: auto;
+            margin-top: 100px;
+            padding: 20px;
+            
+        }
+        h2{
+            margin-left: 65px;
+        }
+        input{
+            margin-top:10px;
+            height: 30px;
+            width: 200px;
+            border: none;
+            border-bottom:1px solid ;
+            outline: none;
+        }
+        h4{
+            margin-top: 30px;
+        }
+        #submit{
+            border: none;
+             margin-top: 30px;
+             background-color: 	#228B22;
+        }
+        .red{
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <form action="logout.html" onsubmit="return login()">
+        <h2>Login</h2>
+        <tr>
+            <td>
+           <h4> Username</h4><br>
+            <input type="text"  id="username"><br>
+            <span id="span1" class="red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <h4> Password</h4> <br>
+                <input type="password" id="passwords"><br>
+            <span id="span2" class="red"></span>
+
+            </td>
+        </tr>
+        <input type="submit" value="LOGIN"  id="submit" >
+    </div>
+</form>
+<script>
+    function login(){
+        var username = document.getElementById("username").value
+        var password1 = document.getElementById("passwords").value
+        var isValid = true;
+
+
+
+
+
+        if(username.length<3|| username.length>25){
+            document.getElementById("span1").innerHTML ='Enter your usename'
+             isValid = false
+        }
+       else if(password1.length<8|| password1.length>16){
+            document.getElementById("span2").innerHTML ='Enter your password'
+            isValid = false
+        }
+        else{
+            isValid=true
+        }
+        return isValid;
+
+
+    }
+</script>
+</body>
+</html>
