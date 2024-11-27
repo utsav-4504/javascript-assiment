@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h3,
+        h5{
+            text-align: center;
+        }
+        .mains {
+            border: 2px solid;
+            width: 400px;
+            padding: 20px;
+            margin: auto;
+
+        }
+
+        .main {
+            display: flex;
+        }
+
+        .at {
+            margin-left: 100px;
+            margin-top: 18px;
+        }
+
+        .main-3 button {
+            padding: 10px 20px 10px 20px;
+            margin-left: 200px;
+        }
+
+        .pop1 input {
+            border: none;
+        }
+
+        .main-4 {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mains">
+        <h3>Marksheet for Information Technology</h3>
+        <h5>Enter Marks</h5>
+        <div class="main">
+            <div class="main-1">
+                <h4> C lenguage:</h4>
+                <h4>C++ lenguage:</h4>
+                <h4>Database:</h4>
+                <h4>HTML:</h4>
+                <h4> CSS:</h4>
+                <h4>Php:</h4>
+                <h4> Core java:</h4>
+            </div>
+            <div class="main-2">
+                <input type="number" placeholder="/50" value="" id="one" class="at"><br>
+                <input type="number" placeholder="/50" value="" id="two" class="at"><br>
+                <input type="number" placeholder="/50" value="" id="Three" class="at"><br>
+                <input type="number" placeholder="/50" value="" id="foru" class="at"><br>
+                <input type="number" placeholder="/50" value="" id="five" class="at"><br>
+                <input type="number" placeholder="/50" value="" id="six" class="at"><br>
+                <input type="number" placeholder="/50" value="" id="sevan" class="at">
+                
+            </div>
+        </div>
+        <div class="main-3">
+            <button onclick="Add()">Result</button>
+        </div>
+        <div class="main-4">
+            <div class="pop" >
+                Total is : <span id="result" ></span>/350
+            </div>
+            <div class="pop1">
+                parcentege is : <span id="result_pr"></span>
+            </div>
+
+        </div>
+    </div>
+    <script>
+         function Add(){
+        var val1 = document.getElementById("one").value
+        var val2 = document.getElementById("two").value
+        var val3 = document.getElementById("Three").value
+        var val4 = document.getElementById("foru").value
+        var val5 = document.getElementById("five").value
+        var val6 = document.getElementById("six").value
+        var val7 = document.getElementById("sevan").value
+        var sum = +val1 + +val2 + +val3 + +val4 + +val5 + +val6 + +val7;
+        document.getElementById("result").innerHTML = sum;
+        document.getElementById("result").style.color="red"
+        var per = sum*100/350;
+        document.getElementById("result_pr").innerHTML = per +"%";
+        document.getElementById("result_pr").style.color="red"
+    }
+    </script>
+   
+</body>
+
+</html>

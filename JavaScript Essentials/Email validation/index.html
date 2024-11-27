@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: rgba(185, 231, 231, 0.902);
+        }
+
+        input {
+            height: 50px;
+            width: 230px;
+            border: none;
+            outline: none;
+            margin-left: 30px;
+
+        }
+
+        .main {
+            display: flex;
+            height: 55px;
+            width: 350px;
+            margin: 200px auto;
+            background-color: white;
+            gap: 40px;
+        }
+
+        .icn {
+            margin-top: 17px;
+        }
+
+        ::placeholder {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main" oninput=" return emaill()">
+        <div> <input type="text" placeholder="Enter your email" id="mail"></div>
+        <div class="icn" ><i class="fa-regular fa-envelope fa-2xl" style="color: #828d9b;" id="icon"></i></div>
+    </div>
+    <script>
+       
+        function emaill(){
+            var email = /^[a-z0-9_]+@[a-z]+\.[a-z]{2,4}$/
+            mail=document.getElementById("mail").value
+        if (!email.test(mail)) {
+            icon.style.color = "red";
+        }else{
+            icon.style.color = "green";
+        }
+        }
+    </script>
+
+</body>
+
+</html>

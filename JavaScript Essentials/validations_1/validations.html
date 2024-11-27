@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            height: 600px;
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px black;
+            border-radius: 5px;
+        }
+
+        input {
+            height: 40px;
+            width: 280px;
+            margin: 10px 0;
+            outline: none;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #submit {
+            background-color: blue;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .color {
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h2>Sign Up</h2>
+        <form name="form" onsubmit="return validate()">
+            <label for="username">Username:</label><br>
+            <input type="text" name="username" id="username"><br>
+            <span id="spanid" class="color"></span><br>
+
+            <label for="email">Email:</label><br>
+            <input type="text" name="email" id="email"><br>
+            <span id="arremail" class="color"></span><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" name="password" id="password"><br>
+            <span id="passwordError" class="color"></span><br>
+
+            <label for="confirmpassword">Confirm Password:</label><br>
+            <input type="password" name="confirmpassword" id="confirmpassword"><br>
+            <span id="cpasserror" class="color"></span><br>
+
+            <input type="submit" value="SIGN UP" id="submit">
+        </form>
+        <script>
+            function validate() {
+                let isValid = true;
+
+                const username = document.forms["form"]["username"].value;
+                const min = 3, max = 25;
+                if (username.length < min || username.length > max) {
+                    document.getElementById("spanid").innerHTML = "Username must be between 3 and 25 characters";
+                    document.getElementById("username").style.border = "2px solid red";
+                    isValid = false;
+                } else {
+                    document.getElementById("spanid").innerHTML = "";
+                    document.getElementById("username").style.border = "2px solid green";
+                }
+
+                const email = document.forms["form"]["email"].value;
+                const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+                if (!emailPattern.test(email)) {
+                    document.getElementById("arremail").innerHTML = "Please enter a valid email";
+                    document.getElementById("email").style.border = "2px solid red";
+                    isValid = false;
+                } else {
+                    document.getElementById("arremail").innerHTML = "";
+                    document.getElementById("email").style.border = "2px solid green";
+                }
+
+                const password = document.forms["form"]["password"].value;
+                const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+                if (password == "" || !passwordPattern.test(password)) {
+                    document.getElementById("passwordError").innerHTML =
+                        "Password must have at least 8 characters, including 1 lowercase, 1 uppercase, 1 number, and 1 special character.";
+                    document.getElementById("password").style.border = "2px solid red";
+                    isValid = false;
+                } else {
+                    document.getElementById("passwordError").innerHTML = "";
+                    document.getElementById("password").style.border = "2px solid green";
+                }
+
+                const confirmPassword = document.forms["form"]["confirmpassword"].value;
+                if (confirmPassword !== password) {
+                    document.getElementById("cpasserror").innerHTML = "Passwords do not match";
+                    document.getElementById("confirmpassword").style.border = "2px solid red";
+                    isValid = false;
+                } else {
+                    document.getElementById("cpasserror").innerHTML = "";
+                    document.getElementById("confirmpassword").style.border = "2px solid green";
+                }
+
+                return isValid; 
+            }
+        </script>
+    </div>
+</body>
+
+</html>

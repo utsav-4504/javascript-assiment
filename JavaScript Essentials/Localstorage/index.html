@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage CRUD Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+        }
+        button {
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CRUD with LocalStorage</h1>
+    <input type="text" id="itemInput" placeholder="Enter item" required>
+    <button onclick="addItem()">Add Item</button>
+
+    <h2>Items:</h2>
+    <ul id="itemList"></ul>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', loadItems);
+
+    function loadItems() {
+        const itemList = document.getElementById('itemList');
+        itemList.innerHTML = ''; 
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+
+            addItemToDOM(key, value);
+        }
+    }
+
+    function addItem() {
+        const itemInput = document.getElementById('itemInput');
+        const itemName = itemInput.value.trim();
+
+        if (itemName) {
+            localStorage.setItem(itemName, itemName);
+            addItemToDOM(itemName, itemName); 
+            itemInput.value = '';
+        } else {
+            alert("Please enter an item name");
+        }
+    }
+
+    function addItemToDOM(key, value) {
+        const itemList = document.getElementById('itemList');
+        const li = document.createElement('li');
+        li.innerHTML = `${value} 
+            <button onclick="editItem('${key}')">Edit</button>
+            <button onclick="deleteItem('${key}')">Delete</button>`;
+        itemList.appendChild(li);
+    }
+
+    function editItem(key) {
+        const newValue = prompt("Enter the new value:", key);
+        if (newValue) {
+            localStorage.setItem(newValue, newValue); 
+            localStorage.removeItem(key);
+            loadItems();
+        }
+    }
+
+    function deleteItem(key) {
+        localStorage.removeItem(key);
+        loadItems(); 
+    }
+</script>
+
+</body>
+</html>

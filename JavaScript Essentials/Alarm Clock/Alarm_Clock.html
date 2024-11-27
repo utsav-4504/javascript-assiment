@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Alarm Clock</title>
+    <style>
+        body {
+            background-color: rgb(0, 123, 255);
+            text-align: center;
+        }
+
+        .main {
+            height: 300px;
+            width: 250px;
+            background-color: white;
+            margin: 100px auto;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .img {
+            height: 100px;
+            width: 100px;
+            background: url(clock.svg);
+            background-size: cover;
+            margin-left: 80px;
+        }
+
+        .select {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button {
+            height: 35px;
+            width: 220px;
+            background-color: rgb(0, 123, 255);
+            border: none;
+            color: white;
+            margin-top: 50px;
+        }
+       
+       
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="img"></div>
+        <h2 id="currentTime">04:20:01 PM</h2>
+        <div class="select">
+            <div class="select-1 selectt">
+                <select name="hours" id="alarmHour">
+                    <option value="">Hours</option>
+                </select>
+            </div>
+            <div class="select-2 selectt">
+                <select name="minutes" id="alarmMinute">
+                    <option value="">Minute</option>
+                </select>
+            </div>
+            <div class="select-3 selectt">
+                <select name="ampm" id="alarmAMPM">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+        <button onclick="setAlarm()">Set Alarm</button>
+    </div>
+
+    <script>
+        function populateTimeOptions() {
+            const hourSelect = document.getElementById('alarmHour');
+            const minuteSelect = document.getElementById('alarmMinute');
+
+            for (let i = 1; i <= 12; i++) {
+                let option = document.createElement('option');
+                option.value = i < 10 ? '0' + i : i;
+                option.innerText = i < 10 ? '0' + i : i;
+                hourSelect.appendChild(option);
+            }
+
+            for (let i = 0; i <= 59; i++) {
+                let option = document.createElement('option');
+                option.value = i < 10 ? '0' + i : i;
+                option.innerText = i < 10 ? '0' + i : i;
+                minuteSelect.appendChild(option);
+            }
+        }
+
+        let alarmTime = null;
+
+        function setAlarm() {
+            const hour = document.getElementById('alarmHour').value;
+            const minute = document.getElementById('alarmMinute').value;
+            const ampm = document.getElementById('alarmAMPM').value;
+
+            if (hour === "" || minute === "") {
+                alert("Please select a valid time for the alarm.");
+                return;
+            }
+
+            alarmTime = `${hour}:${minute} ${ampm}`;
+            alert(`Alarm is set for ${alarmTime}`);
+        }
+
+        function updateTime() {
+            const currentTimeDisplay = document.getElementById('currentTime');
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            let ampm = hours >= 12 ? 'PM' : 'AM';
+
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            const currentTime = `${hours}:${minutes}:${seconds} ${ampm}`;
+            currentTimeDisplay.innerText = currentTime;
+
+            if (alarmTime === `${hours}:${minutes} ${ampm}`) {
+                alert("Wake up! It's time!");
+                alarmTime = null; 
+            }
+        }
+
+        window.onload = function () {
+            populateTimeOptions();
+            setInterval(updateTime, 1000);
+        }
+    </script>
+</body>
+
+</html>

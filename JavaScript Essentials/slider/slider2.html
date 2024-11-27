@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Image Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        section {
+            height: 400px;
+            width: 900px;
+            margin: 20px auto;
+            box-shadow: 0px 0px 10px gray;
+            position: relative;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            position: absolute;
+            transition: 2s;
+        }
+
+        .nav {
+            text-align: center;
+        }
+
+        .nav button {
+            padding: 10px 20px;
+        }
+
+        #left {
+            float: left;
+            margin-top: 30px;
+            border: none;
+            background-color: white;
+        }
+
+        #right {
+            float: right;
+            margin-top: 30px;
+            border: none;
+            background-color: white;
+        }
+
+        .main-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .boxs {
+            height: 100px;
+            width: 140px;
+            opacity: 50%;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .active {
+            opacity: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slider-container"></div>
+
+    <script>
+        function createImageSlider(images) {
+            const sliderContainer = document.getElementById("slider-container");
+
+            const section = document.createElement("section");
+            sliderContainer.appendChild(section);
+
+            const nav = document.createElement("div");
+            nav.classList.add("nav");
+
+            const leftButton = document.createElement("button");
+            leftButton.id = "left";
+            leftButton.innerHTML = '<i class="fa-solid fa-chevron-left fa-2xl"></i>';
+            nav.appendChild(leftButton);
+
+            const rightButton = document.createElement("button");
+            rightButton.id = "right";
+            rightButton.innerHTML = '<i class="fa-solid fa-chevron-right fa-2xl"></i>';
+            nav.appendChild(rightButton);
+
+            sliderContainer.appendChild(nav);
+
+            const mainBox = document.createElement("div");
+            mainBox.classList.add("main-box");
+            sliderContainer.appendChild(mainBox);
+
+            let count = 0;
+
+            images.forEach((image, index) => {
+                const imgElement = document.createElement("img");
+                imgElement.src = image;
+                imgElement.classList.add("img");
+                imgElement.style.left = `${index * 100}%`; 
+                section.appendChild(imgElement);
+
+                const thumbElement = document.createElement("div");
+                thumbElement.classList.add("boxs");
+                thumbElement.style.backgroundImage = `url(${image})`;
+
+                thumbElement.addEventListener("click", () => {
+                    count = index;
+                    slideImage();
+                });
+
+                mainBox.appendChild(thumbElement);
+            });
+
+            function slideImage() {
+                const slides = document.querySelectorAll(".img");
+                slides.forEach((img) => {
+                    img.style.transform = `translateX(${-count * 100}%)`; 
+                });
+
+                const thumbnails = document.querySelectorAll(".boxs");
+                thumbnails.forEach((thumb, index) => {
+                    if (index === count) {
+                        thumb.classList.add("active");
+                    } else {
+                        thumb.classList.remove("active");
+                    }
+                });
+            }
+
+            rightButton.addEventListener("click", () => {
+                count = (count + 1) % images.length; 
+                slideImage();
+            });
+
+            leftButton.addEventListener("click", () => {
+                count = (count - 1 + images.length) % images.length; 
+                slideImage();
+            });
+
+            slideImage();
+        }
+
+        const images = [
+            "ph.jpeg",
+            "ph2.jpeg",
+            "ph3.webp",
+            "ph4.jpeg",
+            "ph5.jpeg",
+            "ph6.jpeg",
+            "ph7.jpg",
+            "ph8.jpeg"
+        ];
+
+        createImageSlider(images);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            color: white;
+        }
+
+        #div1,
+        #div2,
+        #drag1 {
+            width: 100px;
+            height: 70px;
+            padding: 10px;
+            border: 2px solid;
+            background-color: blue;
+        }
+
+        .main{
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .div-1 {
+            height: 400px;
+            width: 500px;
+            border: 2px dotted black;
+
+        }
+
+        .div {
+            height: 400px;
+            width: 500px;
+            border: 2px dotted black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="div" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id="drag1" draggable="true" ondragstart="drag(event)">Drag me 3</div>
+            <div id="div1" draggable="true" ondragstart="drag(event)">Drag me 1</div>
+            <div id="div2" draggable="true" ondragstart="drag(event)">Drag me 2</div>
+        </div>
+        <div class="div-1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </div>
+
+    </div>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</body>
+
+</html>

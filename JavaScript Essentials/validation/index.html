@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgb(0, 181, 124);
+        }
+        .main {
+            height: auto;
+            width: 340px;
+            background-color: white;
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 10px;
+        }
+        p {
+            margin-top: 20px;
+        }
+        input,
+        #gender,
+        button {
+            height: 30px;
+            width: 250px;
+            margin-top: 3px;
+            outline: none;
+        }
+        button {
+            background-color: rgb(0, 181, 124);
+            margin-top: 30px;
+            border: none;
+            color: white;
+        }
+        span {
+            color: red;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <form action="#" onsubmit="return validate()" name="myform">
+        <h1>Form Validation</h1>
+        <div>
+            <p>Full Name</p>
+            <input type="text" id="name" name="name">
+            <span id="span1"></span>
+            
+            <p>Email Address</p>
+            <input type="email" id="email" name="email1">
+            <span id="span2"></span>
+
+            <p>Password</p>
+            <input type="password" id="password" name="password">
+            <span id="span3"></span>
+
+            <p>Birth Date</p>
+            <input type="date" id="date">
+            <span id="span4"></span>
+
+            <p>Gender</p>
+            <select id="gender" name="gender">
+                <option value="">Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <span id="span5"></span>
+
+            <button type="submit">Submit</button>
+        </div>   
+    </form>
+</div>
+
+<script>
+function validate() {
+    const min = 3,
+     max = 25;
+    var name = document.myform.name.value;
+       let emails = /^[a-z0-9_]+@[a-z]+\.[a-z]{2,4}$/
+    var email = document.myform.email1.value;
+   
+    var password = document.myform.password.value;
+    var date = document.getElementById('date').value;
+    var gender = document.myform.gender.value;
+    
+    var isValid = true;
+
+    if (name == "" || name == null) {
+        document.getElementById("span1").innerText = 'Enter your name';
+        document.getElementById("name").style.border = "2px solid red";
+        isValid = false;
+    }else if(name.length < min || name.length > max){
+        document.getElementById("span1").innerText = 'Enter your name';
+        document.getElementById("name").style.border = "2px solid red";
+    }
+     else {
+        document.getElementById("span1").innerText = '';
+        document.getElementById("name").style.border = "";
+    }
+
+    if (email == "" || email == null) {
+        document.getElementById("span2").innerText = 'Enter your email';
+        document.getElementById("email").style.border = "2px solid red";
+        isValid = false;
+    } else  if (!emails.test(email)){
+        document.getElementById("span2").innerText = 'Enter your email';
+        document.getElementById("email").style.border = "2px solid red";
+
+
+    }
+     else {
+        document.getElementById("span2").innerText = '';
+        document.getElementById("email").style.border = "";
+    }
+
+    if (password == "" || password == null) {
+        document.getElementById("span3").innerText = 'Enter your password';
+        document.getElementById("password").style.border = "2px solid red";
+        isValid = false;
+
+    } else if(password.length < 8 || password.length > 16){
+        
+        document.getElementById("span3").innerText = 'Enter your password';
+        document.getElementById("password").style.border = "2px solid red";
+    }
+    else {
+        document.getElementById("span3").innerText = '';
+        document.getElementById("password").style.border = "";
+    }
+
+    if (date == "" || date == null) {
+        document.getElementById("span4").innerText = 'Select your birth date';
+        document.getElementById("date").style.border = "2px solid red";
+        isValid = false;
+    } else {
+        document.getElementById("span4").innerText = '';
+        document.getElementById("date").style.border = "";
+    }
+
+    if (gender == "") {
+        document.getElementById("span5").innerText = 'Select your gender';
+        document.getElementById("gender").style.border = "2px solid red";
+        isValid = false;
+    } else {
+        document.getElementById("span5").innerText = '';
+        document.getElementById("gender").style.border = "";
+    }
+
+    return isValid;
+}
+</script>
+</body>
+</html>
